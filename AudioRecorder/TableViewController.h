@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface TableViewController : UITableViewController
+@interface TableViewController : UITableViewController  <AVAudioPlayerDelegate> 
 
 @property (strong, nonatomic) NSMutableArray* otherRecordingsList;
 @property (strong, nonatomic) AVAudioPlayer* player;

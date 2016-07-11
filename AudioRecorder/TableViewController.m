@@ -21,8 +21,14 @@
 
 - (void) play: (Recording*) aRecording
 {
+	NSLog(@"%@", aRecording.url);
 	NSLog(@"Playing %@", aRecording.date);
+//	NSString* archive = aRecording.path;
+	//if ([[NSFileManager defaultManager] isReadableFileAtPath:archive] == NO) NSLog(@"No File to read");
 	//NSAssert([[NSFileManager defaultManager] fileExistsAtPath: aRecording.path], @"Doesn't exist");
+	
+//	NSLog(@"%@",[[NSFileManager defaultManager] contentsAtPath:archive]);
+	
 	NSError *error;
 	self.player = [[AVAudioPlayer alloc] initWithContentsOfURL: aRecording.url error:&error];
 	if(error){
@@ -36,6 +42,12 @@
 		return;
 	}
 	[self.player play];
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
+					   successfully:(BOOL)flag
+{
+	NSLog(@"done playing!!");
 }
 
 - (void)viewDidLoad {

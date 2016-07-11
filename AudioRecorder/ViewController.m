@@ -21,6 +21,7 @@
 @synthesize currentRecording;
 @synthesize recorder;
 @synthesize timer;
+static bool isRecording = NO;
 
 
 - (void)viewDidLoad {
@@ -72,10 +73,13 @@
 		self.currentRecording = nil;
 		[self.recorder stop];
 		self.statusLabel.text = @"Hi!";
+		isRecording = NO;
 	}
 }
 
 - (IBAction)startRecording:(id)sender {
+	if (isRecording == NO) {
+		isRecording = YES;
 //	if (0.3 == 0.3) NSLog(@"0.3 == 0.3");
 //	float x = 0.3;
 //	if ((@(0.3)).floatValue == x) NSLog(@"x == 0.3");
@@ -132,9 +136,10 @@
 	self.timer = [NSTimer
 				  scheduledTimerWithTimeInterval:0.2
 							target:self
-				  selector:@selector(handleTimer)
+	  			  selector:@selector(handleTimer)
 						  userInfo:nil
 						   repeats:YES];
+	}
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -150,5 +155,6 @@
 	self.currentRecording = nil;
 	[self.recorder stop];
 	self.statusLabel.text = @"Hi!";
+	isRecording = NO;
 }
 @end

@@ -15,6 +15,9 @@
 
 @implementation TableViewController
 @synthesize player;
+@synthesize otherRecordingsList;
+
+
 
 - (void) play: (Recording*) aRecording
 {
@@ -77,7 +80,11 @@
 	
 	// Configure the cell...
 	//cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.otherRecordingsList objectAtIndex:indexPath.row]];
-	cell.textLabel.text = [tmpArray objectAtIndex:indexPath.row];
+	//cell.textLabel.text = [tmpArray objectAtIndex:indexPath.row];
+	
+	Recording* r = (Recording*)[self.otherRecordingsList objectAtIndex:indexPath.row];
+	
+	cell.textLabel.text = [NSString stringWithFormat:@"%@", r.date];
 	
 	
 	return cell;
@@ -88,6 +95,8 @@
 	//Recording* r = [self.recordinglist objectAtIndex: indexPath.row];
 	// [self play: r];
 	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	
+	[self play: [self.otherRecordingsList objectAtIndex:indexPath.row]];
 }
 
 

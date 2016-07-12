@@ -74,7 +74,6 @@ static bool isRecording = NO;
 		[self.recorder stop];
 		self.statusLabel.text = @"Hi!";
 		isRecording = NO;
-		[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
 	}
 }
 
@@ -163,6 +162,5 @@ static bool isRecording = NO;
 	[self.recorder stop];
 	self.statusLabel.text = @"Hi!";
 	isRecording = NO;
-	[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
 }
 @end

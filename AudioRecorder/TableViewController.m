@@ -53,6 +53,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+
 	//NSLog(@"%@", @([self.otherRecordingsList count]));
     
     // Uncomment the following line to preserve selection between presentations.

@@ -97,10 +97,14 @@
 	//cell.textLabel.text = [NSString stringWithFormat:@"%@", [self.otherRecordingsList objectAtIndex:indexPath.row]];
 	//cell.textLabel.text = [tmpArray objectAtIndex:indexPath.row];
 	
+	//NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+	//dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+
+	
 	Recording* r = (Recording*)[self.otherRecordingsList objectAtIndex:indexPath.row];
 	
-	cell.textLabel.text = [NSString stringWithFormat:@"%@", r.date];
-	
+	//cell.textLabel.text = [NSString stringWithFormat:@"%@", r.date];
+	cell.textLabel.text = [r.date descriptionWithLocale:[NSLocale currentLocale]];
 	
 	return cell;
 }

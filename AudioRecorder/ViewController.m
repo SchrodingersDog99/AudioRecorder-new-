@@ -74,6 +74,7 @@ static bool isRecording = NO;
 		[self.recorder stop];
 		self.statusLabel.text = @"Hi!";
 		isRecording = NO;
+		[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
 	}
 }
 
@@ -92,8 +93,10 @@ static bool isRecording = NO;
 	}
 	err = nil;
 	
-	[audioSession setActive:YES error:&err];
-	if (err) {} //**
+	 [audioSession setActive:YES error:&err];
+	//[audioSession setCategory: AVAudioSessionCategoryPlayback error: nil];
+
+//	if (err) {} //**
 	
 	self.currentRecording = [[Recording alloc] initWithDate: [NSDate date]];
 	[self.recordingsList addObject: self.currentRecording];
@@ -123,7 +126,7 @@ static bool isRecording = NO;
 		return;
 	}
 	
-	[self.recorder setDelegate:(id)self];   ///!!!!!!!!
+	[self.recorder setDelegate:self];   ///!!!!!!!!
 	[self.recorder prepareToRecord];
 	self.recorder.meteringEnabled = YES;
 	BOOL audioHWAvailable = audioSession.inputAvailable;
@@ -142,6 +145,10 @@ static bool isRecording = NO;
 	}
 }
 
+- (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)arecorder successfully:(BOOL)flag {
+	NSLog(@"Finish Recording!");
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	TableViewController* tvc = (TableViewController*) segue.destinationViewController;
@@ -156,5 +163,6 @@ static bool isRecording = NO;
 	[self.recorder stop];
 	self.statusLabel.text = @"Hi!";
 	isRecording = NO;
+	[[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
 }
 @end

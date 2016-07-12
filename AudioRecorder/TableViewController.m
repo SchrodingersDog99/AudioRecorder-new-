@@ -35,13 +35,14 @@
 		NSLog(@"playing audio: %@ %ld %@", [error domain], [error code], [[error userInfo] description]);
 		return;
 	}else{
-		self.player.delegate = (id)self;
+		self.player.delegate = self;
 	}
-	if([self.player prepareToPlay] == NO){
+/*	if([self.player prepareToPlay] == NO){
 		NSLog(@"Not prepared to play!");
 		return;
 	}
-	[self.player play];
+*/	NSLog(@"%@", @([self.player play]));
+	
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
